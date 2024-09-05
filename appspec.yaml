@@ -1,0 +1,33 @@
+version: 0.0
+os: linux
+
+files:
+  # The source and destination paths where the files will be copied
+  - source: /home/ubuntu/sampleapp/index.html
+    destination: /var/www/html
+
+hooks:
+  # Hook to install dependencies before the application starts
+  BeforeInstall:
+    - location: scripts/install.sh
+      timeout: 300
+      runas: root
+
+  # Hook to restart the web server after the application is deployed
+  #AfterInstall:
+  # - location: scripts/restart_web_server.sh
+  #   timeout: 300
+  #   runas: root
+
+  # Hook to perform any post-deployment tasks
+  ApplicationStart:
+    - location: scripts/start_app.sh
+      timeout: 300
+      runas: root
+
+  # Hook to clean up if the deployment fails
+  ApplicationStop:
+    - location: scripts/stop.sh
+      timeout: 300
+      runas: root
+
