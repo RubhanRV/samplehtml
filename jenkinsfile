@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+environment {
+        git_url = 'https://github.com/RubhanRV/samplehtml.git'
+        branch = 'master'
+        AWS_REGION = 'us-east-1'
+        AWS_APPLICATION_NAME = 'simplewebapp-7APP'
+        AWS_DEPLOYMENT_GROUP_NAME = 'simplewebappDEPLOYMENTGROUP-7'
+        AWS_ACCESS_KEY_ID = credentials('AKIASLS5NZJQE7C6JJ4I')
+        AWS_SECRET_ACCESS_KEY = credentials('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')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git credentialsId: '1aa2fe7b-024d-43a6-9b35-9377ca2e4977', branch: "$(branch)", url: "$(git_url)"
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Install AWS CLI if not already available
+                    sh 'pip install awscli'
+
+                    // Deploy to AWS CodeDeploy
+                    sh """
+                    aws deploy create-deployment \
+                        --application-name ${AWS_APPLICATION_NAME} \
+                        --deployment-group-name ${AWS_DEPLOYMENT_GROUP_NAME} \
+                        --deployment-config-name CodeDeployDefault.AllAtOnce \
+                        --description "Jenkins Deployment" \
+                        --s3-location bucket=your-s3-bucket,key=your-app.zip,bundleType=zip \
+                        --region ${AWS_REGION}
+                    """
+                }
+            }
+        }
+    }
+}
