@@ -14,7 +14,7 @@ environment {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: '1aa2fe7b-024d-43a6-9b35-9377ca2e4977', branch: "$(branch)", url: "$(git_url)"
+                git credentialsId: '1aa2fe7b-024d-43a6-9b35-9377ca2e4977', branch: "${branch}", url: "${git_url}"
             }
         }
 
