@@ -3,7 +3,7 @@ os: linux
 
 files:
   # The source and destination paths where the files will be copied
-  - source: /root/sampleapp/index.html
+  - source: /index.html
     destination: /var/www/html
 
 hooks:
