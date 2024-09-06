@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    //agent any
 
 environment {
         git_url = 'https://github.com/RubhanRV/samplehtml.git'
@@ -7,7 +7,7 @@ environment {
         AWS_REGION = 'us-east-1'
         AWS_APPLICATION_NAME = 'simplewebapp-7APP'
         AWS_DEPLOYMENT_GROUP_NAME = 'simplewebappDEPLOYMENTGROUP-7'
-        AWS_ACCESS_KEY_ID = credentials('AKIASLS5NZJQE7C6JJ4I')
+        //AWS_ACCESS_KEY_ID = credentials('AKIASLS5NZJQE7C6JJ4I')
        
     }
 
@@ -15,6 +15,7 @@ environment {
         stage('Checkout') {
             steps {
                 git credentialsId: '1aa2fe7b-024d-43a6-9b35-9377ca2e4977', branch: "${branch}", url: "${git_url}"
+                echo 'Git pull success'
             }
         }
 
@@ -22,7 +23,7 @@ environment {
             steps {
                 script {
                     // Install AWS CLI if not already available
-                    sh 'pip install awscli'
+                    //sh 'pip install awscli'
 
                     // Deploy to AWS CodeDeploy
                     sh """
