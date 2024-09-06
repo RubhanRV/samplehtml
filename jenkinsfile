@@ -31,7 +31,7 @@ environment {
                         --application-name ${AWS_APPLICATION_NAME} \
                         --deployment-group-name ${AWS_DEPLOYMENT_GROUP_NAME} \
                         --deployment-config-name CodeDeployDefault.AllAtOnce \
-                        --description "Jenkins Deployment" \
+                        --description "Code Deploy from Jenkins" \
                         --s3-location bucket=your-s3-bucket,key=your-app.zip,bundleType=zip \
                         --region ${AWS_REGION}
                     """
