@@ -8,7 +8,7 @@ environment {
         AWS_APPLICATION_NAME = 'simplewebapp-7APP'
         AWS_DEPLOYMENT_GROUP_NAME = 'simplewebappDEPLOYMENTGROUP-7'
         AWS_ACCESS_KEY_ID = credentials('AKIASLS5NZJQE7C6JJ4I')
-        AWS_SECRET_ACCESS_KEY = credentials('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')
+       
     }
 
     stages {
